@@ -536,4 +536,292 @@ WorkloadWarmup   5: 1 op, 1025343041.00 ns, 1.0253 s/op
 WorkloadActual   1: 1 op, 70618583.00 ns, 70.6186 ms/op
 WorkloadActual   2: 1 op, 25511666.00 ns, 25.5117 ms/op
 WorkloadActual   3: 1 op, 42183125.00 ns, 42.1831 ms/op
-WorkloadActual   4: 1 op, 36147625.00 ns, 36.1476 ms
+WorkloadActual   4: 1 op, 36147625.00 ns, 36.1476 ms/op
+WorkloadActual   5: 1 op, 35053042.00 ns, 35.0530 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 25511666.00 ns, 25.5117 ms/op
+WorkloadResult   2: 1 op, 42183125.00 ns, 42.1831 ms/op
+WorkloadResult   3: 1 op, 36147625.00 ns, 36.1476 ms/op
+WorkloadResult   4: 1 op, 35053042.00 ns, 35.0530 ms/op
+GC:  2 1 0 1612136 1
+Threading:  3001 16 1
+
+// AfterAll
+// Benchmark Process 14655 has exited with code 0.
+
+Mean = 34.724 ms, StdErr = 3.448 ms (9.93%), N = 4, StdDev = 6.895 ms
+Min = 25.512 ms, Q1 = 32.668 ms, Median = 35.600 ms, Q3 = 37.657 ms, Max = 42.183 ms
+IQR = 4.989 ms, LowerFence = 25.184 ms, UpperFence = 45.140 ms
+ConfidenceInterval = [-9.834 ms; 79.282 ms] (CI 99.9%), Margin = 44.558 ms (128.32% of Mean)
+Skewness = -0.28, Kurtosis = 1.14, MValue = 2
+
+// **************************
+// Benchmark: BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=1500]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "5ab7fe26-0684-464d-8ee1-58231368b5f1.dll" --benchmarkName "Calculation.Benchmarking.BenchmarcingComplexity.ComplexThreaded(Dimension: 1500)" --job "IterationCount=5, RunStrategy=Throughput, WarmupCount=5" --benchmarkId 11 in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/5ab7fe26-0684-464d-8ee1-58231368b5f1/bin/Release/net5.0
+Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-IZPQBU(IterationCount=5, RunStrategy=Throughput, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 553042.00 ns, 553.0420 us/op
+WorkloadJitting  1: 1 op, 781764395417.00 ns, 781.7644 s/op
+
+WorkloadWarmup   1: 1 op, 85058000.00 ns, 85.0580 ms/op
+WorkloadWarmup   2: 1 op, 149573417.00 ns, 149.5734 ms/op
+WorkloadWarmup   3: 1 op, 266123833.00 ns, 266.1238 ms/op
+WorkloadWarmup   4: 1 op, 99478125.00 ns, 99.4781 ms/op
+WorkloadWarmup   5: 1 op, 1133659125.00 ns, 1.1337 s/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 49032250.00 ns, 49.0322 ms/op
+WorkloadActual   2: 1 op, 48551958.00 ns, 48.5520 ms/op
+WorkloadActual   3: 1 op, 49897417.00 ns, 49.8974 ms/op
+WorkloadActual   4: 1 op, 58770583.00 ns, 58.7706 ms/op
+WorkloadActual   5: 1 op, 200425917.00 ns, 200.4259 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 49032250.00 ns, 49.0322 ms/op
+WorkloadResult   2: 1 op, 48551958.00 ns, 48.5520 ms/op
+WorkloadResult   3: 1 op, 49897417.00 ns, 49.8974 ms/op
+WorkloadResult   4: 1 op, 58770583.00 ns, 58.7706 ms/op
+GC:  2 1 0 2500672 1
+Threading:  4501 120 1
+
+// AfterAll
+// Benchmark Process 14773 has exited with code 0.
+
+Mean = 51.563 ms, StdErr = 2.419 ms (4.69%), N = 4, StdDev = 4.837 ms
+Min = 48.552 ms, Q1 = 48.912 ms, Median = 49.465 ms, Q3 = 52.116 ms, Max = 58.771 ms
+IQR = 3.204 ms, LowerFence = 44.107 ms, UpperFence = 56.921 ms
+ConfidenceInterval = [20.305 ms; 82.821 ms] (CI 99.9%), Margin = 31.258 ms (60.62% of Mean)
+Skewness = 0.72, Kurtosis = 1.29, MValue = 2
+
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts/results/Calculation.Benchmarking.BenchmarcingComplexity-report.csv
+  BenchmarkDotNet.Artifacts/results/Calculation.Benchmarking.BenchmarcingComplexity-report-github.md
+  BenchmarkDotNet.Artifacts/results/Calculation.Benchmarking.BenchmarcingComplexity-report.html
+
+// * Detailed results *
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 98.410 μs, StdErr = 1.773 μs (1.80%), N = 5, StdDev = 3.964 μs
+Min = 93.879 μs, Q1 = 95.732 μs, Median = 97.765 μs, Q3 = 100.945 μs, Max = 103.729 μs
+IQR = 5.213 μs, LowerFence = 87.913 μs, UpperFence = 108.763 μs
+ConfidenceInterval = [83.148 μs; 113.672 μs] (CI 99.9%), Margin = 15.262 μs (15.51% of Mean)
+Skewness = 0.17, Kurtosis = 1.07, MValue = 2
+-------------------- Histogram --------------------
+[92.780 μs ;  98.864 μs) | @@@
+[98.864 μs ; 105.379 μs) | @@
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=10]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 355.542 μs, StdErr = 48.463 μs (13.63%), N = 5, StdDev = 108.366 μs
+Min = 259.458 μs, Q1 = 275.375 μs, Median = 308.584 μs, Q3 = 421.333 μs, Max = 512.959 μs
+IQR = 145.958 μs, LowerFence = 56.438 μs, UpperFence = 640.270 μs
+ConfidenceInterval = [-61.736 μs; 772.820 μs] (CI 99.9%), Margin = 417.278 μs (117.36% of Mean)
+Skewness = 0.42, Kurtosis = 1.11, MValue = 2
+-------------------- Histogram --------------------
+[257.219 μs ; 423.572 μs) | @@@@
+[423.572 μs ; 596.136 μs) | @
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=25]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 479.354 μs, StdErr = 15.230 μs (3.18%), N = 4, StdDev = 30.461 μs
+Min = 457.708 μs, Q1 = 462.364 μs, Median = 467.729 μs, Q3 = 484.719 μs, Max = 524.250 μs
+IQR = 22.355 μs, LowerFence = 428.832 μs, UpperFence = 518.251 μs
+ConfidenceInterval = [282.517 μs; 676.191 μs] (CI 99.9%), Margin = 196.837 μs (41.06% of Mean)
+Skewness = 0.67, Kurtosis = 1.26, MValue = 2
+-------------------- Histogram --------------------
+[439.439 μs ; 489.811 μs) | @@@
+[489.811 μs ; 549.436 μs) | @
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=50]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 737.532 μs, StdErr = 18.484 μs (2.51%), N = 4, StdDev = 36.967 μs
+Min = 682.709 μs, Q1 = 731.646 μs, Median = 753.833 μs, Q3 = 759.719 μs, Max = 759.750 μs
+IQR = 28.073 μs, LowerFence = 689.535 μs, UpperFence = 801.830 μs
+ConfidenceInterval = [498.650 μs; 976.413 μs] (CI 99.9%), Margin = 238.882 μs (32.39% of Mean)
+Skewness = -0.7, Kurtosis = 1.28, MValue = 2
+-------------------- Histogram --------------------
+[652.144 μs ; 723.289 μs) | @
+[723.289 μs ; 790.315 μs) | @@@
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=100]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 1.627 ms, StdErr = 0.294 ms (18.09%), N = 4, StdDev = 0.588 ms
+Min = 1.204 ms, Q1 = 1.340 ms, Median = 1.403 ms, Q3 = 1.689 ms, Max = 2.498 ms
+IQR = 0.349 ms, LowerFence = 0.817 ms, UpperFence = 2.212 ms
+ConfidenceInterval = [-2.176 ms; 5.429 ms] (CI 99.9%), Margin = 3.803 ms (233.77% of Mean)
+Skewness = 0.69, Kurtosis = 1.28, MValue = 2
+-------------------- Histogram --------------------
+[0.825 ms ; 2.011 ms) | @@@
+[2.011 ms ; 2.984 ms) | @
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=150]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 2.213 ms, StdErr = 0.161 ms (7.27%), N = 4, StdDev = 0.322 ms
+Min = 1.798 ms, Q1 = 2.047 ms, Median = 2.264 ms, Q3 = 2.430 ms, Max = 2.525 ms
+IQR = 0.382 ms, LowerFence = 1.474 ms, UpperFence = 3.003 ms
+ConfidenceInterval = [0.134 ms; 4.292 ms] (CI 99.9%), Margin = 2.079 ms (93.94% of Mean)
+Skewness = -0.26, Kurtosis = 0.94, MValue = 2
+-------------------- Histogram --------------------
+[1.532 ms ; 2.062 ms) | @
+[2.062 ms ; 2.594 ms) | @@@
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=250]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 3.808 ms, StdErr = 0.355 ms (9.32%), N = 4, StdDev = 0.710 ms
+Min = 2.857 ms, Q1 = 3.602 ms, Median = 3.901 ms, Q3 = 4.107 ms, Max = 4.573 ms
+IQR = 0.504 ms, LowerFence = 2.846 ms, UpperFence = 4.863 ms
+ConfidenceInterval = [-0.781 ms; 8.397 ms] (CI 99.9%), Margin = 4.589 ms (120.51% of Mean)
+Skewness = -0.29, Kurtosis = 1.14, MValue = 2
+-------------------- Histogram --------------------
+[2.269 ms ; 3.625 ms) | @
+[3.625 ms ; 4.799 ms) | @@@
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=300]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 7.682 ms, StdErr = 0.825 ms (10.74%), N = 5, StdDev = 1.845 ms
+Min = 4.609 ms, Q1 = 7.619 ms, Median = 8.150 ms, Q3 = 8.573 ms, Max = 9.458 ms
+IQR = 0.954 ms, LowerFence = 6.189 ms, UpperFence = 10.003 ms
+ConfidenceInterval = [0.578 ms; 14.786 ms] (CI 99.9%), Margin = 7.104 ms (92.48% of Mean)
+Skewness = -0.72, Kurtosis = 1.72, MValue = 2
+-------------------- Histogram --------------------
+[3.193 ms ; 6.025 ms) | @
+[6.025 ms ; 7.123 ms) | 
+[7.123 ms ; 9.955 ms) | @@@@
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=450]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 14.527 ms, StdErr = 2.202 ms (15.15%), N = 4, StdDev = 4.403 ms
+Min = 9.171 ms, Q1 = 12.903 ms, Median = 14.502 ms, Q3 = 16.127 ms, Max = 19.933 ms
+IQR = 3.224 ms, LowerFence = 8.067 ms, UpperFence = 20.962 ms
+ConfidenceInterval = [-13.925 ms; 42.979 ms] (CI 99.9%), Margin = 28.452 ms (195.86% of Mean)
+Skewness = 0.01, Kurtosis = 1.12, MValue = 2
+-------------------- Histogram --------------------
+[ 8.374 ms ; 15.655 ms) | @@@
+[15.655 ms ; 23.573 ms) | @
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=500]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 11.334 ms, StdErr = 1.217 ms (10.74%), N = 5, StdDev = 2.721 ms
+Min = 8.701 ms, Q1 = 9.065 ms, Median = 10.881 ms, Q3 = 12.785 ms, Max = 15.236 ms
+IQR = 3.719 ms, LowerFence = 3.486 ms, UpperFence = 18.364 ms
+ConfidenceInterval = [0.856 ms; 21.811 ms] (CI 99.9%), Margin = 10.478 ms (92.45% of Mean)
+Skewness = 0.32, Kurtosis = 1.13, MValue = 2
+-------------------- Histogram --------------------
+[ 8.655 ms ; 12.832 ms) | @@@@
+[12.832 ms ; 17.325 ms) | @
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=1000]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 34.724 ms, StdErr = 3.448 ms (9.93%), N = 4, StdDev = 6.895 ms
+Min = 25.512 ms, Q1 = 32.668 ms, Median = 35.600 ms, Q3 = 37.657 ms, Max = 42.183 ms
+IQR = 4.989 ms, LowerFence = 25.184 ms, UpperFence = 45.140 ms
+ConfidenceInterval = [-9.834 ms; 79.282 ms] (CI 99.9%), Margin = 44.558 ms (128.32% of Mean)
+Skewness = -0.28, Kurtosis = 1.14, MValue = 2
+-------------------- Histogram --------------------
+[19.810 ms ; 32.917 ms) | @
+[32.917 ms ; 44.319 ms) | @@@
+---------------------------------------------------
+
+BenchmarcingComplexity.ComplexThreaded: Job-QPCVGH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=1500]
+Runtime = .NET 5.0.9 (5.0.921.35908), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 51.563 ms, StdErr = 2.419 ms (4.69%), N = 4, StdDev = 4.837 ms
+Min = 48.552 ms, Q1 = 48.912 ms, Median = 49.465 ms, Q3 = 52.116 ms, Max = 58.771 ms
+IQR = 3.204 ms, LowerFence = 44.107 ms, UpperFence = 56.921 ms
+ConfidenceInterval = [20.305 ms; 82.821 ms] (CI 99.9%), Margin = 31.258 ms (60.62% of Mean)
+Skewness = 0.72, Kurtosis = 1.29, MValue = 2
+-------------------- Histogram --------------------
+[44.552 ms ; 53.224 ms) | @@@
+[53.224 ms ; 62.770 ms) | @
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet=v0.13.1, OS=macOS Monterey 12.0.1 (21A559) [Darwin 21.1.0]
+Apple M1 2.40GHz, 1 CPU, 8 logical and 8 physical cores
+.NET SDK=5.0.400
+  [Host]     : .NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+  Job-QPCVGH : .NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+
+IterationCount=5  RunStrategy=Throughput  WarmupCount=5  
+
+|          Method | Dimension |         Mean |        Error |       StdDev |     Gen 0 |     Gen 1 | Allocated |
+|---------------- |---------- |-------------:|-------------:|-------------:|----------:|----------:|----------:|
+| ComplexThreaded |         5 |     98.41 μs |     15.26 μs |     3.964 μs |    5.0049 |    2.4414 |     12 KB |
+| ComplexThreaded |        10 |    355.54 μs |    417.28 μs |   108.366 μs |         - |         - |     21 KB |
+| ComplexThreaded |        25 |    479.35 μs |    196.84 μs |    30.461 μs |         - |         - |     45 KB |
+| ComplexThreaded |        50 |    737.53 μs |    238.88 μs |    36.967 μs |         - |         - |     85 KB |
+| ComplexThreaded |       100 |  1,626.66 μs |  3,802.59 μs |   588.456 μs |         - |         - |    165 KB |
+| ComplexThreaded |       150 |  2,212.86 μs |  2,078.81 μs |   321.699 μs |         - |         - |    245 KB |
+| ComplexThreaded |       250 |  3,808.01 μs |  4,589.20 μs |   710.183 μs | 1000.0000 |         - |    396 KB |
+| ComplexThreaded |       300 |  7,681.88 μs |  7,104.00 μs | 1,844.886 μs | 1000.0000 |         - |    510 KB |
+| ComplexThreaded |       450 | 14,527.18 μs | 28,452.29 μs | 4,403.024 μs | 1000.0000 |         - |    715 KB |
+| ComplexThreaded |       500 | 11,333.67 μs | 10,477.67 μs | 2,721.017 μs | 1000.0000 |         - |    851 KB |
+| ComplexThreaded |      1000 | 34,723.86 μs | 44,558.16 μs | 6,895.424 μs | 2000.0000 | 1000.0000 |  1,574 KB |
+| ComplexThreaded |      1500 | 51,563.05 μs | 31,257.71 μs | 4,837.165 μs | 2000.0000 | 1000.0000 |  2,442 KB |
+
+// * Warnings *
+MinIterationTime
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 259.4580 μs which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 457.7080 μs which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 682.7090 μs which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 1.2038 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 1.7980 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 2.8567 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 4.6091 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 9.1713 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 8.7015 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 25.5117 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> The minimum observed iteration time is 48.5520 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+
+// * Hints *
+Outliers
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  removed (629.75 μs)
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  removed, 2 outliers were detected (682.71 μs, 1.38 ms)
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  removed (5.15 ms)
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  removed (3.33 ms)
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  removed (6.56 ms)
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  detected (4.61 ms)
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  removed (807.71 ms)
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  removed (70.62 ms)
+  BenchmarcingComplexity.ComplexThreaded: IterationCount=5, RunStrategy=Throughput, WarmupCount=5 -> 1 outlier  was  removed (200.43 ms)
+
+// * Legends *
+  Dimension : Value of the 'Dimension' parameter
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Gen 0     : GC Generation 0 collects per 1000 operations
+  Gen 1     : GC Generation 1 collects per 1000 operations
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 μs      : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+// ** Remained 0 benchmark(s) to run **
+Run time: 00:38:17 (2297.2 sec), executed benchmarks: 12
+
+Global total time: 00:38:26 (2306.66 sec), executed benchmarks: 12
+// * Artifacts cleanup *

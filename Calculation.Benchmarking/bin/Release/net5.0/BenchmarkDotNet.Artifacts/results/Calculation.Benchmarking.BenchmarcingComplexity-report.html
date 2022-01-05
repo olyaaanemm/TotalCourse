@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>Calculation.Benchmarking.BenchmarcingComplexity-20220105-164144</title>
+<title>Calculation.Benchmarking.BenchmarcingComplexity-20220105-164719</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -17,26 +17,26 @@ BenchmarkDotNet=v0.13.1, OS=macOS Monterey 12.0.1 (21A559) [Darwin 21.1.0]
 Apple M1 2.40GHz, 1 CPU, 8 logical and 8 physical cores
 .NET SDK=5.0.400
   [Host]     : .NET 5.0.9 (5.0.921.35908), X64 RyuJIT
-  Job-DRUPNS : .NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+  Job-QPCVGH : .NET 5.0.9 (5.0.921.35908), X64 RyuJIT
 </code></pre>
 <pre><code>IterationCount=5  RunStrategy=Throughput  WarmupCount=5  
 </code></pre>
 
 <table>
-<thead><tr><th>   Method</th><th>Dimension</th><th> Mean</th><th>Error</th><th>StdDev</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+<thead><tr><th>   Method</th><th>Dimension</th><th>  Mean</th><th> Error</th><th>StdDev</th><th>Gen 0</th><th>Gen 1</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td>ComplexThreaded</td><td>5</td><td>21.09 &mu;s</td><td>1.582 &mu;s</td><td>0.411 &mu;s</td><td>3.2959</td><td>1.0071</td><td>0.4883</td><td>10 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>10</td><td>39.16 &mu;s</td><td>1.161 &mu;s</td><td>0.180 &mu;s</td><td>6.2866</td><td>1.8921</td><td>0.8545</td><td>19 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>25</td><td>95.02 &mu;s</td><td>8.748 &mu;s</td><td>1.354 &mu;s</td><td>14.5264</td><td>4.2725</td><td>2.0752</td><td>44 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>50</td><td>179.47 &mu;s</td><td>17.602 &mu;s</td><td>2.724 &mu;s</td><td>30.2734</td><td>9.0332</td><td>4.1504</td><td>87 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>100</td><td>369.24 &mu;s</td><td>33.800 &mu;s</td><td>5.231 &mu;s</td><td>60.5469</td><td>17.0898</td><td>8.3008</td><td>174 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>150</td><td>543.03 &mu;s</td><td>25.312 &mu;s</td><td>6.574 &mu;s</td><td>90.8203</td><td>26.3672</td><td>12.6953</td><td>264 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>250</td><td>889.02 &mu;s</td><td>28.971 &mu;s</td><td>4.483 &mu;s</td><td>145.5078</td><td>43.9453</td><td>21.4844</td><td>429 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>300</td><td>1,072.32 &mu;s</td><td>55.781 &mu;s</td><td>14.486 &mu;s</td><td>179.6875</td><td>58.5938</td><td>27.3438</td><td>528 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>450</td><td>1,660.53 &mu;s</td><td>52.720 &mu;s</td><td>8.159 &mu;s</td><td>265.6250</td><td>83.9844</td><td>39.0625</td><td>775 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>500</td><td>1,830.97 &mu;s</td><td>67.877 &mu;s</td><td>17.627 &mu;s</td><td>294.9219</td><td>101.5625</td><td>50.7813</td><td>858 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>1000</td><td>3,929.48 &mu;s</td><td>382.966 &mu;s</td><td>99.455 &mu;s</td><td>531.2500</td><td>156.2500</td><td>54.6875</td><td>1,714 KB</td>
-</tr><tr><td>ComplexThreaded</td><td>1500</td><td>6,137.38 &mu;s</td><td>579.582 &mu;s</td><td>150.516 &mu;s</td><td>828.1250</td><td>304.6875</td><td>117.1875</td><td>2,602 KB</td>
+</thead><tbody><tr><td>ComplexThreaded</td><td>5</td><td>98.41 &mu;s</td><td>15.26 &mu;s</td><td>3.964 &mu;s</td><td>5.0049</td><td>2.4414</td><td>12 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>10</td><td>355.54 &mu;s</td><td>417.28 &mu;s</td><td>108.366 &mu;s</td><td>-</td><td>-</td><td>21 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>25</td><td>479.35 &mu;s</td><td>196.84 &mu;s</td><td>30.461 &mu;s</td><td>-</td><td>-</td><td>45 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>50</td><td>737.53 &mu;s</td><td>238.88 &mu;s</td><td>36.967 &mu;s</td><td>-</td><td>-</td><td>85 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>100</td><td>1,626.66 &mu;s</td><td>3,802.59 &mu;s</td><td>588.456 &mu;s</td><td>-</td><td>-</td><td>165 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>150</td><td>2,212.86 &mu;s</td><td>2,078.81 &mu;s</td><td>321.699 &mu;s</td><td>-</td><td>-</td><td>245 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>250</td><td>3,808.01 &mu;s</td><td>4,589.20 &mu;s</td><td>710.183 &mu;s</td><td>1000.0000</td><td>-</td><td>396 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>300</td><td>7,681.88 &mu;s</td><td>7,104.00 &mu;s</td><td>1,844.886 &mu;s</td><td>1000.0000</td><td>-</td><td>510 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>450</td><td>14,527.18 &mu;s</td><td>28,452.29 &mu;s</td><td>4,403.024 &mu;s</td><td>1000.0000</td><td>-</td><td>715 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>500</td><td>11,333.67 &mu;s</td><td>10,477.67 &mu;s</td><td>2,721.017 &mu;s</td><td>1000.0000</td><td>-</td><td>851 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>1000</td><td>34,723.86 &mu;s</td><td>44,558.16 &mu;s</td><td>6,895.424 &mu;s</td><td>2000.0000</td><td>1000.0000</td><td>1,574 KB</td>
+</tr><tr><td>ComplexThreaded</td><td>1500</td><td>51,563.05 &mu;s</td><td>31,257.71 &mu;s</td><td>4,837.165 &mu;s</td><td>2000.0000</td><td>1000.0000</td><td>2,442 KB</td>
 </tr></tbody></table>
 </body>
 </html>
