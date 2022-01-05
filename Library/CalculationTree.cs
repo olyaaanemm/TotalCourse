@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using Library;
 
@@ -9,7 +14,7 @@ namespace Library
 {
     public class CalculationTree<T>
     {
-        protected Node<T>? head;
+        protected Node<T>? head { get; set; }
 
         public CalculationTree(Node<T> node)
         {
@@ -20,25 +25,50 @@ namespace Library
         {
             return this.head;
         }
-        public void  Calculate(Node<T>? node)
+
+        public bool pushNode(Node<T>? node)
         {
-            if (node != null)
+            if (node == null)
             {
-                Calculate(node.getLeft());
-                Calculate(node.getRight());
-                node.Execute();
+                return false;
             }
-            //return node.getData();
+            else
+            {
+                this.head = node;
+                return true;
+            }
+        }
+        public  void Calculate()
+        {
+            calculate(this.head);
+        }
+
+        private static void calculate(Node<T>? calc)
+        {
+            if (calc != null)
+            {
+                calculate(calc.getLeft());
+                calculate(calc.getRight());
+                calc.Execute();
+            }
+        }
+        public  T getResult()
+        {
+            if (this.head == null)
+            {
+                return (dynamic) (- 1);
+            }
+            return this.head.getData().First().First();
         }
     }
 
     public abstract class Node<T>
     {
-        protected List<List<T>> data;
-        protected Node<T>? left;
-        protected Node<T>? right;
+        protected IEnumerable<IEnumerable<T>> data { get; set; }
+        protected Node<T>? left { get; set; }
+        protected Node<T>? right { get; set; }
         
-        public List<List<T>> getData()
+        public IEnumerable<IEnumerable<T>> getData()
         {
             return this.data;
         }
@@ -50,21 +80,41 @@ namespace Library
         }
 
         public abstract void Execute();
+
+        enum Type
+        {
+            DATA, 
+            MAP, 
+            ZIP, 
+            PRODUCT, 
+            REDUCE
+        }
     }
     
     public class DataNode<T>: Node<T>
     {
-        public DataNode(List<List<T>> value)
+        public DataNode(IEnumerable<IEnumerable<T>> value)
         {
             this.data = value;
             this.left = null;
             this.right = null;
         }
+        public DataNode(IEnumerable<T> value)
+        {
+            var it = value.GetEnumerator();
+            for (int i = 0; i < value.Count(); i++)
+            {
+                this.data.Append( new ConcurrentBag<T>{it.Current});
+            }
+            this.left = null;
+            this.right = null;
+        }
         public DataNode(DataNode<T> other)
         {
-            for (int i = 0; i < other.data.Count; i++)
+            var it = other.data.GetEnumerator();
+            for (int i = 0; i < other.data.Count(); i++)
             {
-                this.data.Add(other.data[i]);
+                this.data.Append(it.Current);
             }
             this.left = null;
             this.right = null;
@@ -75,124 +125,78 @@ namespace Library
     public class TaskNode<T1, T>: Node<T>
     {
         private T1 taskType;
-        public TaskNode(T1 taskName, List<Node<T>> info)
+        public TaskNode(T1 taskName, List<Node<T>?> info)
         {
             this.taskType = taskName;
             this.left = info[0];
             this.right = info[1];
         }
-        public TaskNode(T1 taskName, Node<T> info)
+        public TaskNode(T1 taskName, Node<T>? info)
         {
             this.taskType = taskName;
             this.left = info;
             this.right = null;
         }
-        
-         public override void Execute ()
+
+        public override void Execute()
         {
             switch (this.taskType)
             {
                 case MAP.MULTIPLY:
-                    map((x, y) => (dynamic) x * (dynamic) y);
+                    //this.data = Execution<T>.map(((x, y) =>  Operation(x,  y, OPERATION.MULTYPLY)), this.left, this.right);
+                    this.data = Execution<T>.mapNative(((x, y) =>  Operation(x,  y, OPERATION.MULTYPLY)), this.left, this.right);
                     break;
                 case MAP.DERIVE:
-                    map((x, y) => (dynamic) x / (dynamic) y);
+                    //this.data = Execution<T>.map(((x, y) =>  Operation(x,  y, OPERATION.DERIVE)), this.left, this.right);
+                    this.data = Execution<T>.mapNative(((x, y) =>  Operation(x,  y, OPERATION.DERIVE)), this.left, this.right);
                     break;
                 case MAP.POWER:
-                    map((x, y) => Math.Pow((dynamic)x, (dynamic)y));
+                    //this.data = Execution<T>.map(((x, y) =>  Operation(x,  y, OPERATION.POWER)), this.left, this.right);
+                    this.data = Execution<T>.mapNative(((x, y) =>  Operation(x,  y, OPERATION.POWER)), this.left, this.right);
                     break;
                 case REDUCE.SUM:
-                    reduce((x, y) => (dynamic)x + (dynamic)y);
+                    //this.data = Execution<T>.reduce(OPERATION.SUM, this.left, this.right);
+                    this.data = Execution<T>.reduceNative((x, y) =>  Operation(x,  y, OPERATION.SUM), this.left, this.right);
                     break;
                 case REDUCE.MIN:
-                    reduce((x, y) => ((dynamic)x < (dynamic)y )? x : y);
+                    //this.data = Execution<T>.reduce(OPERATION.LESS, this.left, this.right);
+                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.LESS), this.left, this.right);
                     break;
                 case REDUCE.MAX:
-                    reduce((x, y) => ((dynamic)x > (dynamic)y) ? x : y );
+                    //this.data = Execution<T>.reduce(OPERATION.GREATER, this.left, this.right);
+                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.GREATER), this.left, this.right);
                     break;
                 case REDUCE.COUNT:
-                    reduce((x, y) => (dynamic)0 + (dynamic)1 );
+                    //this.data = Execution<T>.reduce(OPERATION.INCREMENT, this.left, this.right);
+                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
                     break;
                 case ZIP.TWOTOGHETHER:
-                    zip();
+                    this.data = Execution<T>.zip(this.left, this.right);
+                    //this.data = Execution<T>.zipNative(this.left, this.right);
                     break;
                 case PRODUCT.ONCOUNT:
-                    product();
+                    this.data = Execution<T>.product(this.left, this.right);
+                    //this.data = Execution<T>.productNative(this.left, this.right);
                     break;
             }
         }
 
-         void map(Func<T, T, T> calculation)
-         {
-             this.data = new List<List<T>>();
-             if (this.left != null)
-             {
-                 for(var i = 0; i < this.left.getData().Count; i++) 
-                 {
-                     this.data.Add(new List<T>{calculation(this.left.getData()[i][0], this.left.getData()[i][1])});
-                 }
-             }
-             else
-             {
-                 for(var i = 0; i < this.right.getData().Count; i++) 
-                 {
-                     this.data.Add(new List<T>{calculation(this.right.getData()[i][0], this.right.getData()[i][1])});
-                 }
-             }
-             
-         }
-         void reduce(Func<T, T, T> calculation)
-         {
-             this.data = new List<List<T>>{new List<T>{(dynamic)0}};
-             if (this.left != null)
-             {
-                 Parallel.ForEach(
-                     Enumerable.Range(0, this.left.getData().Count),
-                     i =>
-                     {
-                         this.data[0][0] = calculation(this.data[0][0],this.left.getData()[i][0]) ;
-                     });
-             }
-             else
-             {
-                 Parallel.ForEach(
-                     Enumerable.Range(0, this.right.getData().Count),
-                     i =>
-                     {
-                         this.data[0][0] = calculation(this.data[0][0],this.right.getData()[i][0]) ;
-                     });
-             }
-         }
-         void product()
-         {
-             this.data = new List<List<T>>();
-             for (var i = 0; i < this.right.getData().Count; i++)
-             {
-                 for (var j = 0; j < this.left.getData().Count; j++)
-                 {
-                     this.data.Add(new List<T>{this.right.getData()[i][0], this.left.getData()[j][0]});
-                 }
-             }
-         }
-         void zip()
-         {
-             this.data = new List<List<T>>();
-             if (this.left.getData().Count < this.right.getData().Count)
-             {
-                 for (int i = 0; i < this.left.getData().Count; i++)
-                 {
-                     this.data.Add(new List<T>{this.left.getData()[i][0], this.right.getData()[i][0]});
-                 }
-             }
-             else
-             {
-                 for (int i = 0; i < this.right.getData().Count; i++)
-                 {
-                     this.data.Add(new List<T>{this.right.getData()[i][0], this.left.getData()[i][0]});
-                 }
-             }
+        T Operation (dynamic x, dynamic y, OPERATION operate) 
+        {
+            switch (operate)
+            {
+                case OPERATION.MULTYPLY: return x * y;
+                case OPERATION.DERIVE: return x / y;
+                case OPERATION.LESS: return (x < y) ? x : y;
+                case OPERATION.GREATER: return (x > y) ? x : y;
+                case OPERATION.POWER : return Math.Pow(x, y);
+                case OPERATION.INCREMENT: return (dynamic)1;
+                case OPERATION.SUM: return x + y;
+                default: return (dynamic) 0;
+            }
 
-         }
+        }
+
     }
 
     public enum MAP
@@ -217,5 +221,15 @@ namespace Library
     public enum PRODUCT
     {
         ONCOUNT
+    }
+    public enum OPERATION
+    {
+        MULTYPLY, 
+        DERIVE, 
+        POWER, 
+        GREATER,
+        LESS,
+        INCREMENT, 
+        SUM
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using Library;
@@ -9,16 +10,15 @@ namespace Structures
     {
         static void Main(string[] args)
         {
-            var counts = new DataNode<int>(new List<List<int>>{new List<int>{3}, new List<int>{2}, new List<int>{5}});
+            var counts = new DataNode<int>(new List<List<int>>{new List<int>{3}, new List<int>{2}, new List<int>{5}, new List<int>{5}, new List<int>{5}});
             var two = new DataNode<int>(new List<List<int>>{new List<int>{2}});
-            var product = new TaskNode<PRODUCT, int>(PRODUCT.ONCOUNT, new List<Node<int>> {counts, two});
-            var map = new TaskNode<MAP, int>(MAP.MULTIPLY, product);
-            var reduce = new TaskNode<REDUCE, int>(REDUCE.SUM, map);
-
-            var tree = new CalculationTree<int>(reduce);
-            tree.Calculate(tree.getRoot());
-            Console.WriteLine(tree.getRoot().getData()[0][0]);
+            
+            var tree = Execution<int>.Compution(
+                Execution<int>.reduceNode(REDUCE.SUM,
+                Execution<int>.mapNode(MAP.MULTIPLY,
+                    Execution<int>.productNode(PRODUCT.ONCOUNT, new List<Node<int>> {counts, two}))));
+            tree.Calculate();
+            Console.WriteLine(tree.getResult());
         }
-        //привет, я здесь/ чтож/ мы постараемся все сдать тогда
     }
 }
