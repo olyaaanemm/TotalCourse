@@ -1,0 +1,55 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 10 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/8d694ac0-9279-46d4-a836-572dace6ffbd
+// command took 2.82s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/8d694ac0-9279-46d4-a836-572dace6ffbd
+// command took 8.46s and exited with 0
+// ***** Done, took 00:00:11 (11.5 sec)   *****
+// Found 10 benchmarks:
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=10]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=25]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=50]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=100]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=150]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=250]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=300]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=450]
+//   Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=500]
+
+// **************************
+// Benchmark: Benchmarking.OneThreaded: Job-KOAMHS(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "8d694ac0-9279-46d4-a836-572dace6ffbd.dll" --benchmarkName "Calculation.Benchmarking.Benchmarking.OneThreaded(Dimension: 5)" --job "IterationCount=5, RunStrategy=Throughput, WarmupCount=5" --benchmarkId 0 in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/8d694ac0-9279-46d4-a836-572dace6ffbd/bin/Release/net5.0
+Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-TNJWNE(IterationCount=5, RunStrategy=Throughput, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 518000.00 ns, 518.0000 us/op
+WorkloadJitting  1: 1 op, 233210958.00 ns, 233.2110 ms/op
+
+WorkloadPilot    1: 2 op, 1371042.00 ns, 685.5210 us/op
+WorkloadPilot    2: 3 op, 275042.00 ns, 91.6807 us/op
+WorkloadPilot    3: 4 op, 316958.00 ns, 79.2395 us/op
+WorkloadPilot    4: 5 op, 422750.00 ns, 84.5500 us/op
+WorkloadPilot    5: 6 op, 412792.00 ns, 68.7987 us/op
+WorkloadPilot    6: 7 op, 445667.00 ns, 63.6667 us/op
+WorkloadPilot    7: 8 op, 598791.00 ns, 74.8489 us/op
+WorkloadPilot    8: 9 op, 544917.00 ns, 60.5463 us/op
+WorkloadPilot    9: 10 op, 547583.00 ns, 54.7583 us/op
+WorkloadPilot   10: 11 op, 349833.00 ns, 31.8030 us/op
+WorkloadPilot   11: 12 op, 837875.00 ns, 69.8229 us/op
+WorkloadPilot   12: 13 op, 584000.00 ns, 44.9231 us/op
+WorkloadPilot   13: 14 op, 822375.00 ns, 58.7411 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Library.Execution`1.reduceNative(Func`3 calculation, Node`1 first, Node`1 second) in /Users/olganemova/RiderProjects/TotalCourse/Library/CalculationTree.cs:line 308
+   at Library.TaskNode`2.Execute

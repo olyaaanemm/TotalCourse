@@ -1,0 +1,52 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 10 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/2e1d0d71-66a3-49e6-a5b2-2cf8cc25705c
+// command took 2.99s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/2e1d0d71-66a3-49e6-a5b2-2cf8cc25705c
+// command took 8.9s and exited with 0
+// ***** Done, took 00:00:12 (12.12 sec)   *****
+// Found 10 benchmarks:
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=10]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=25]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=50]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=100]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=150]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=250]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=300]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=450]
+//   Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=500]
+
+// **************************
+// Benchmark: Benchmarking.OneThreaded: Job-LSKIJR(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "2e1d0d71-66a3-49e6-a5b2-2cf8cc25705c.dll" --benchmarkName "Calculation.Benchmarking.Benchmarking.OneThreaded(Dimension: 5)" --job "IterationCount=5, RunStrategy=Throughput, WarmupCount=5" --benchmarkId 0 in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/2e1d0d71-66a3-49e6-a5b2-2cf8cc25705c/bin/Release/net5.0
+Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-GOAUBD(IterationCount=5, RunStrategy=Throughput, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 452250.00 ns, 452.2500 us/op
+WorkloadJitting  1: 1 op, 231265000.00 ns, 231.2650 ms/op
+
+WorkloadPilot    1: 2 op, 1118958.00 ns, 559.4790 us/op
+WorkloadPilot    2: 3 op, 280917.00 ns, 93.6390 us/op
+WorkloadPilot    3: 4 op, 261458.00 ns, 65.3645 us/op
+WorkloadPilot    4: 5 op, 241583.00 ns, 48.3166 us/op
+WorkloadPilot    5: 6 op, 365333.00 ns, 60.8888 us/op
+WorkloadPilot    6: 7 op, 395041.00 ns, 56.4344 us/op
+WorkloadPilot    7: 8 op, 307166.00 ns, 38.3957 us/op
+WorkloadPilot    8: 9 op, 408917.00 ns, 45.4352 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Library.Execution`1.reduceNative(Func`3 calculation, Node`1 first, Node`1 second) in /Users/olganemova/RiderProjects/TotalCourse/Library/CalculationTree.cs:line 308
+   at Library.TaskNode`2.Execute() in /Users/olganemova/RiderProjects/TotalCourse/Library/CalculationTree.cs:line 135
+   at Library.Execution`1.calculate(Node`1 calc) in /Users/olganemova/RiderProjects/TotalCourse/Library/CalculationTree.cs:line 460
+   at Library.Execution`1.Calculate() in /Users/olganemov

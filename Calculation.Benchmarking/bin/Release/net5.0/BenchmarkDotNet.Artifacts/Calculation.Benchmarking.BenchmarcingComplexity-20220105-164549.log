@@ -1,0 +1,203 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 12 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/82944755-bd80-4705-8b03-58d2e31a8ad6
+// command took 2.95s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/82944755-bd80-4705-8b03-58d2e31a8ad6
+// command took 6.17s and exited with 0
+// ***** Done, took 00:00:09 (9.39 sec)   *****
+// Found 12 benchmarks:
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=10]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=25]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=50]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=100]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=150]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=250]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=300]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=450]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=500]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=1000]
+//   BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=1500]
+
+// **************************
+// Benchmark: BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "82944755-bd80-4705-8b03-58d2e31a8ad6.dll" --benchmarkName "Calculation.Benchmarking.BenchmarcingComplexity.ComplexThreaded(Dimension: 5)" --job "IterationCount=5, RunStrategy=Throughput, WarmupCount=5" --benchmarkId 0 in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/82944755-bd80-4705-8b03-58d2e31a8ad6/bin/Release/net5.0
+Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-LBQZHW(IterationCount=5, RunStrategy=Throughput, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 465833.00 ns, 465.8330 us/op
+WorkloadJitting  1: 1 op, 225264834.00 ns, 225.2648 ms/op
+
+WorkloadPilot    1: 2 op, 1076875.00 ns, 538.4375 us/op
+WorkloadPilot    2: 3 op, 1077750.00 ns, 359.2500 us/op
+WorkloadPilot    3: 4 op, 825958.00 ns, 206.4895 us/op
+WorkloadPilot    4: 5 op, 1247625.00 ns, 249.5250 us/op
+WorkloadPilot    5: 6 op, 1394583.00 ns, 232.4305 us/op
+WorkloadPilot    6: 7 op, 1202167.00 ns, 171.7381 us/op
+WorkloadPilot    7: 8 op, 1735375.00 ns, 216.9219 us/op
+WorkloadPilot    8: 9 op, 1880708.00 ns, 208.9676 us/op
+WorkloadPilot    9: 10 op, 2144792.00 ns, 214.4792 us/op
+WorkloadPilot   10: 11 op, 2309334.00 ns, 209.9395 us/op
+WorkloadPilot   11: 12 op, 2469875.00 ns, 205.8229 us/op
+WorkloadPilot   12: 13 op, 2922625.00 ns, 224.8173 us/op
+WorkloadPilot   13: 14 op, 2721459.00 ns, 194.3899 us/op
+WorkloadPilot   14: 15 op, 3792333.00 ns, 252.8222 us/op
+WorkloadPilot   15: 16 op, 3381000.00 ns, 211.3125 us/op
+WorkloadPilot   16: 32 op, 5930875.00 ns, 185.3398 us/op
+WorkloadPilot   17: 64 op, 11985458.00 ns, 187.2728 us/op
+WorkloadPilot   18: 128 op, 24360875.00 ns, 190.3193 us/op
+WorkloadPilot   19: 256 op, 45090666.00 ns, 176.1354 us/op
+WorkloadPilot   20: 512 op, 331503083.00 ns, 647.4670 us/op
+WorkloadPilot   21: 1024 op, 149430125.00 ns, 145.9279 us/op
+WorkloadPilot   22: 2048 op, 329330417.00 ns, 160.8059 us/op
+WorkloadPilot   23: 4096 op, 750631125.00 ns, 183.2596 us/op
+
+WorkloadWarmup   1: 4096 op, 525749667.00 ns, 128.3569 us/op
+WorkloadWarmup   2: 4096 op, 521516208.00 ns, 127.3233 us/op
+WorkloadWarmup   3: 4096 op, 520898500.00 ns, 127.1725 us/op
+WorkloadWarmup   4: 4096 op, 649893875.00 ns, 158.6655 us/op
+WorkloadWarmup   5: 4096 op, 530629375.00 ns, 129.5482 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 4096 op, 519544333.00 ns, 126.8419 us/op
+WorkloadActual   2: 4096 op, 532887250.00 ns, 130.0994 us/op
+WorkloadActual   3: 4096 op, 626111250.00 ns, 152.8592 us/op
+WorkloadActual   4: 4096 op, 709944500.00 ns, 173.3263 us/op
+WorkloadActual   5: 4096 op, 736380167.00 ns, 179.7803 us/op
+
+// AfterActualRun
+WorkloadResult   1: 4096 op, 519544333.00 ns, 126.8419 us/op
+WorkloadResult   2: 4096 op, 532887250.00 ns, 130.0994 us/op
+WorkloadResult   3: 4096 op, 626111250.00 ns, 152.8592 us/op
+WorkloadResult   4: 4096 op, 709944500.00 ns, 173.3263 us/op
+WorkloadResult   5: 4096 op, 736380167.00 ns, 179.7803 us/op
+GC:  29 14 0 67847608 4096
+Threading:  106498 628 4096
+
+// AfterAll
+// Benchmark Process 14355 has exited with code 0.
+
+Mean = 152.581 μs, StdErr = 10.812 μs (7.09%), N = 5, StdDev = 24.177 μs
+Min = 126.842 μs, Q1 = 130.099 μs, Median = 152.859 μs, Q3 = 173.326 μs, Max = 179.780 μs
+IQR = 43.227 μs, LowerFence = 65.259 μs, UpperFence = 238.167 μs
+ConfidenceInterval = [59.483 μs; 245.680 μs] (CI 99.9%), Margin = 93.098 μs (61.02% of Mean)
+Skewness = 0.01, Kurtosis = 0.84, MValue = 2
+
+// **************************
+// Benchmark: BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=10]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "82944755-bd80-4705-8b03-58d2e31a8ad6.dll" --benchmarkName "Calculation.Benchmarking.BenchmarcingComplexity.ComplexThreaded(Dimension: 10)" --job "IterationCount=5, RunStrategy=Throughput, WarmupCount=5" --benchmarkId 1 in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/82944755-bd80-4705-8b03-58d2e31a8ad6/bin/Release/net5.0
+Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-KSBMZH(IterationCount=5, RunStrategy=Throughput, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 531583.00 ns, 531.5830 us/op
+WorkloadJitting  1: 1 op, 2341324250.00 ns, 2.3413 s/op
+
+WorkloadWarmup   1: 1 op, 2186250.00 ns, 2.1862 ms/op
+WorkloadWarmup   2: 1 op, 768459.00 ns, 768.4590 us/op
+WorkloadWarmup   3: 1 op, 526750.00 ns, 526.7500 us/op
+WorkloadWarmup   4: 1 op, 481667.00 ns, 481.6670 us/op
+WorkloadWarmup   5: 1 op, 608958.00 ns, 608.9580 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 670084.00 ns, 670.0840 us/op
+WorkloadActual   2: 1 op, 550375.00 ns, 550.3750 us/op
+WorkloadActual   3: 1 op, 381750.00 ns, 381.7500 us/op
+WorkloadActual   4: 1 op, 346708.00 ns, 346.7080 us/op
+WorkloadActual   5: 1 op, 361375.00 ns, 361.3750 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 670084.00 ns, 670.0840 us/op
+WorkloadResult   2: 1 op, 550375.00 ns, 550.3750 us/op
+WorkloadResult   3: 1 op, 381750.00 ns, 381.7500 us/op
+WorkloadResult   4: 1 op, 346708.00 ns, 346.7080 us/op
+WorkloadResult   5: 1 op, 361375.00 ns, 361.3750 us/op
+GC:  0 0 0 26248 1
+Threading:  51 0 1
+
+// AfterAll
+// Benchmark Process 14362 has exited with code 0.
+
+Mean = 462.058 μs, StdErr = 63.627 μs (13.77%), N = 5, StdDev = 142.273 μs
+Min = 346.708 μs, Q1 = 361.375 μs, Median = 381.750 μs, Q3 = 550.375 μs, Max = 670.084 μs
+IQR = 189.000 μs, LowerFence = 77.875 μs, UpperFence = 833.875 μs
+ConfidenceInterval = [-85.785 μs; 1,009.902 μs] (CI 99.9%), Margin = 547.844 μs (118.57% of Mean)
+Skewness = 0.46, Kurtosis = 1.1, MValue = 2
+
+// **************************
+// Benchmark: BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=25]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "82944755-bd80-4705-8b03-58d2e31a8ad6.dll" --benchmarkName "Calculation.Benchmarking.BenchmarcingComplexity.ComplexThreaded(Dimension: 25)" --job "IterationCount=5, RunStrategy=Throughput, WarmupCount=5" --benchmarkId 2 in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/82944755-bd80-4705-8b03-58d2e31a8ad6/bin/Release/net5.0
+Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-FPYTMO(IterationCount=5, RunStrategy=Throughput, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 520792.00 ns, 520.7920 us/op
+WorkloadJitting  1: 1 op, 10438912500.00 ns, 10.4389 s/op
+
+WorkloadWarmup   1: 1 op, 4776916.00 ns, 4.7769 ms/op
+WorkloadWarmup   2: 1 op, 1112834.00 ns, 1.1128 ms/op
+WorkloadWarmup   3: 1 op, 555500.00 ns, 555.5000 us/op
+WorkloadWarmup   4: 1 op, 467792.00 ns, 467.7920 us/op
+WorkloadWarmup   5: 1 op, 510500.00 ns, 510.5000 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 803375.00 ns, 803.3750 us/op
+WorkloadActual   2: 1 op, 782042.00 ns, 782.0420 us/op
+WorkloadActual   3: 1 op, 690125.00 ns, 690.1250 us/op
+WorkloadActual   4: 1 op, 593084.00 ns, 593.0840 us/op
+WorkloadActual   5: 1 op, 803375.00 ns, 803.3750 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 803375.00 ns, 803.3750 us/op
+WorkloadResult   2: 1 op, 782042.00 ns, 782.0420 us/op
+WorkloadResult   3: 1 op, 690125.00 ns, 690.1250 us/op
+WorkloadResult   4: 1 op, 593084.00 ns, 593.0840 us/op
+WorkloadResult   5: 1 op, 803375.00 ns, 803.3750 us/op
+GC:  0 0 0 67144 1
+Threading:  126 0 1
+
+// AfterAll
+// Benchmark Process 14363 has exited with code 0.
+
+Mean = 734.400 μs, StdErr = 41.058 μs (5.59%), N = 5, StdDev = 91.809 μs
+Min = 593.084 μs, Q1 = 690.125 μs, Median = 782.042 μs, Q3 = 803.375 μs, Max = 803.375 μs
+IQR = 113.250 μs, LowerFence = 520.250 μs, UpperFence = 973.250 μs
+ConfidenceInterval = [380.878 μs; 1,087.923 μs] (CI 99.9%), Margin = 353.523 μs (48.14% of Mean)
+Skewness = -0.55, Kurtosis = 1.28, MValue = 2
+
+// **************************
+// Benchmark: BenchmarcingComplexity.ComplexThreaded: Job-KCUYVC(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=50]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "82944755-bd80-4705-8b03-58d2e31a8ad6.dll" --benchmarkName "Calculation.Benchmarking.BenchmarcingComplexity.ComplexThreaded(Dimension: 50)" --job "IterationCount=5, RunStrategy=Throughput, WarmupCount=5" --benchmarkId 3 in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/82944755-bd80-4705-8b03-58d2e31a8ad6/bin/Release/net5.0
+Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-KKLYHF(IterationCount=5, RunStrategy=Throughput, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 1012666.00 ns, 1.0127 ms/op
+// Benchmark Process 14364 has exited with code 130.

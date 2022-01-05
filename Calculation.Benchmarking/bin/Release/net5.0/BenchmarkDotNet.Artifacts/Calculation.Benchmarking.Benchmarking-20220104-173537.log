@@ -1,0 +1,53 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 10 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/3659cae1-2b60-4f52-af2b-485c3a9bae55
+// command took 3.03s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/3659cae1-2b60-4f52-af2b-485c3a9bae55
+// command took 6.41s and exited with 0
+// ***** Done, took 00:00:09 (9.69 sec)   *****
+// Found 10 benchmarks:
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=10]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=25]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=50]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=100]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=150]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=250]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=300]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=450]
+//   Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=500]
+
+// **************************
+// Benchmark: Benchmarking.OneThreaded: Job-DSGMDX(IterationCount=5, RunStrategy=Throughput, WarmupCount=5) [Dimension=5]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "3659cae1-2b60-4f52-af2b-485c3a9bae55.dll" --benchmarkName "Calculation.Benchmarking.Benchmarking.OneThreaded(Dimension: 5)" --job "IterationCount=5, RunStrategy=Throughput, WarmupCount=5" --benchmarkId 0 in /Users/olganemova/RiderProjects/TotalCourse/Calculation.Benchmarking/bin/Release/net5.0/3659cae1-2b60-4f52-af2b-485c3a9bae55/bin/Release/net5.0
+Failed to set up high priority. Make sure you have the right permissions. Message: Permission denied
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 5.0.9 (5.0.921.35908), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-OURXZU(IterationCount=5, RunStrategy=Throughput, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 516541.00 ns, 516.5410 us/op
+WorkloadJitting  1: 1 op, 218632625.00 ns, 218.6326 ms/op
+
+WorkloadPilot    1: 2 op, 1356542.00 ns, 678.2710 us/op
+WorkloadPilot    2: 3 op, 342625.00 ns, 114.2083 us/op
+WorkloadPilot    3: 4 op, 276250.00 ns, 69.0625 us/op
+WorkloadPilot    4: 5 op, 284167.00 ns, 56.8334 us/op
+WorkloadPilot    5: 6 op, 292458.00 ns, 48.7430 us/op
+WorkloadPilot    6: 7 op, 393541.00 ns, 56.2201 us/op
+WorkloadPilot    7: 8 op, 499583.00 ns, 62.4479 us/op
+WorkloadPilot    8: 9 op, 752750.00 ns, 83.6389 us/op
+WorkloadPilot    9: 10 op, 675708.00 ns, 67.5708 us/op
+WorkloadPilot   10: 11 op, 642167.00 ns, 58.3788 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Library.Execution`1.reduceNative(Func`3 calculation, Node`1 first, Node`1 second) in /Users/olganemova/RiderProjects/TotalCourse/Library/CalculationTree.cs:line 307
+   at Library.TaskNode`2.Execute() in /Users/olganemova/RiderProjects/TotalCourse/Library/CalculationTree.cs:line 135
+   at Library.Execution`1.calculate(Node`1 calc) in /Users/olganemova/RiderPro
