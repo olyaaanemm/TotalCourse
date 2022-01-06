@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 
 namespace SimpleThreadPool
@@ -8,7 +8,7 @@ namespace SimpleThreadPool
         static int  shared_counter = 0;
         static void Main()
         {
-            SimpleThreadPool pool = new SimpleThreadPool(4);
+            SimpleThreadPool pool = new SimpleThreadPool();
             
             var random = new Random();
             Action<int> randomizer = (index =>
@@ -26,10 +26,7 @@ namespace SimpleThreadPool
             }
             
             pool.Join();
-            Thread.Sleep(3);
-            Console.WriteLine(shared_counter);
-            
-            Thread.Sleep(3);
+            Thread.Sleep(5);
             Console.WriteLine(shared_counter);
         }
     }
