@@ -22,7 +22,7 @@ namespace SimpleThreadPool
 
         public void Join()
         {
-            _state = false;
+            //_state = false;
             foreach (var worker in this._workers)
             {
                 worker.Join();
@@ -48,10 +48,6 @@ namespace SimpleThreadPool
                 Action task;
                 var state = _tasks.TryDequeue(out task);
                 if (!state)
-                {
-                    break;
-                }
-                if (!_state)
                 {
                     break;
                 }
