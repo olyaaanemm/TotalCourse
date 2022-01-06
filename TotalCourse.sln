@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculation.Benchmarking", "Calculation.Benchmarking\Calculation.Benchmarking.csproj", "{20502AB1-F87B-4979-9D89-A10782F084F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.ThreadPool", "Simple.ThreadPool\Simple.ThreadPool.csproj", "{885CED30-9B6F-470D-901F-63E1EC8F1E4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{20502AB1-F87B-4979-9D89-A10782F084F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20502AB1-F87B-4979-9D89-A10782F084F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20502AB1-F87B-4979-9D89-A10782F084F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{885CED30-9B6F-470D-901F-63E1EC8F1E4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{885CED30-9B6F-470D-901F-63E1EC8F1E4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{885CED30-9B6F-470D-901F-63E1EC8F1E4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{885CED30-9B6F-470D-901F-63E1EC8F1E4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

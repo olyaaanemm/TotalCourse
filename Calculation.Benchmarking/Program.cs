@@ -7,7 +7,7 @@ namespace Calculation.Benchmarking
     {
         private static void Main(string[] args)
         {
-            _ = BenchmarkRunner.Run<BenchmarcingComplexity>();
+            _ = BenchmarkRunner.Run<Benchmarking>();
         }
     }
 }

@@ -171,12 +171,12 @@ namespace Library
                     this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
                     break;
                 case ZIP.TWOTOGHETHER:
-                    this.data = Execution<T>.zip(this.left, this.right);
-                    //this.data = Execution<T>.zipNative(this.left, this.right);
+                    //this.data = Execution<T>.zip(this.left, this.right);
+                    this.data = Execution<T>.zipNative(this.left, this.right);
                     break;
                 case PRODUCT.ONCOUNT:
-                    this.data = Execution<T>.product(this.left, this.right);
-                    //this.data = Execution<T>.productNative(this.left, this.right);
+                    //this.data = Execution<T>.product(this.left, this.right);
+                    this.data = Execution<T>.productNative(this.left, this.right);
                     break;
             }
         }

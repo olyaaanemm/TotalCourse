@@ -87,16 +87,16 @@ namespace Library
              {
                  var c = new CountdownEvent(first.getData().Count());
                  IEnumerable<IEnumerable<T>> coll = first.getData();
-                 var tasks = coll.Select(
-                     elem => new Task(
+                 var threads = coll.Select(
+                     elem => new Thread(
                          () =>
                          {
                              data.Add(new List<T>{calculation(elem.First(), elem.Last())});
                              c.Signal();
                          }));
-                 foreach (var task in tasks)
+                 foreach (var thread in threads)
                  {
-                     task.Start();
+                     thread.Start();
                  }
                  c.Wait();
              }
@@ -104,16 +104,16 @@ namespace Library
              {
                  IEnumerable<IEnumerable<T>> coll = second.getData();
                  var c = new CountdownEvent(second.getData().Count());
-                 var tasks = coll.Select(
-                     elem => new Task(
+                 var threads = coll.Select(
+                     elem => new Thread(
                          () =>
                          {
                              data.Add(new List<T>{calculation(elem.First(), elem.Last())});
                              c.Signal();
                          }));
-                 foreach (var task in tasks)
+                 foreach (var thread in threads)
                  {
-                     task.Start();
+                     thread.Start();
                  }
                  c.Wait();
              }
@@ -178,28 +178,28 @@ namespace Library
              var second_data = second.getData();
              var first_data = first.getData();
              var c = new CountdownEvent(second.getData().Count());
-             var tasks = second_data.Select(
-                 el2 => new Task(
+             var threads = second_data.Select(
+                 el2 => new Thread(
                      () =>
                      {
                          var m = new CountdownEvent(first_data.Count());
-                         var tasks = first_data.Select(
-                             el1 => new Task(
+                         var threads = first_data.Select(
+                             el1 => new Thread(
                                  () =>
                                 {
                                     data.Add(new List<T>{el2.First(),el1.First()});
                                     m.Signal();
                                 }));
-                         foreach (var task in tasks)
+                         foreach (var thread in threads)
                          {
-                            task.Start();
+                             thread.Start();
                          }
                          m.Wait();
                          c.Signal();
                      }));
-             foreach (var task in tasks)
+             foreach (var thread in threads)
              {
-                 task.Start();
+                 thread.Start();
              }
              c.Wait();
              return data;
@@ -233,32 +233,33 @@ namespace Library
              if (collection1.Count() < collection2.Count())
              {
                  var c = new CountdownEvent(collection1.Count());
-                 var tasks = Enumerable.Range(0, collection1.Count()).Select(
-                     i => new Task(
+                 var threads = Enumerable.Range(0, collection1.Count()).Select(
+                     i => new Thread(
                          () =>
                          {
                              data.Add(new ConcurrentBag<T> {collection1.ElementAt(i).ElementAt(0), collection2.ElementAt(i).ElementAt(0)});
                              c.Signal();
                      }));
-                 foreach (var task in tasks)
+                 foreach (var tread in threads)
                  {
-                     task.Start();
+                     tread.Start();
                  }
                  c.Wait();
              }
              else
              {
+                 
                  var c = new CountdownEvent(collection2.Count());
-                 var tasks = Enumerable.Range(0, collection2.Count()).Select(
-                     i => new Task(
+                 var threads = Enumerable.Range(0, collection2.Count()).Select(
+                     i => new Thread(
                          () =>
                          {
                              data.Add(new ConcurrentBag<T> {collection1.ElementAt(i).ElementAt(0), collection2.ElementAt(i).ElementAt(0)});
                              c.Signal();
                      }));
-                 foreach (var task in tasks)
+                 foreach (var tread in threads)
                  {
-                     task.Start();
+                     tread.Start();
                  }
                  c.Wait();
              }
