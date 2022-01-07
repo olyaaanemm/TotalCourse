@@ -161,49 +161,87 @@ namespace Library
          }
 
         public static List<List<T>> reduce(Func<T, T, T> calculation, Node<T>? first, Node<T>? second) //left right Х
-        { 
-            var c = (dynamic)0;
-            global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
+        { //MIN, MAX, COUNT, SUM 
+            var c = (dynamic) 0;
             if (second == null && first == null)
             {
                 return new List<List<T>>{ new List<T>()};
             }
+            c = ParallelAlgo(WhoFrom(first, second), calculation);
+            List<List<T>> data = new List<List<T>>{ new List<T>{c}};
+            return data;
+        }
+        
+        private static T ParallelAlgo(IEnumerable<IEnumerable<T>> collection, Func<T, T, T> calculation)
+        {
+            int batch_size = 8;
+            var result_ = (dynamic) 0;
+            ConcurrentBag<T> results = new ConcurrentBag<T>();
+            var countdown = new CountdownEvent(8);
+            int N = collection.Count() / batch_size;
+            int ost = collection.Count() % batch_size;
+            var threads = Enumerable.Range(0, 8).Select(
+                i => new Thread(
+                    () =>
+                    {
+                        var i1 = i;
+                        var temp_sum = (dynamic) 0;
+                        if (N > 0)
+                        {
+                            for (int j = N * i1; j < N * (i1 + 1); j++)
+                            {
+                                T new_ = calculation(temp_sum, collection.ElementAt(j).First());
+                                var lst = temp_sum;
+                                var origin = (dynamic) 0;
+                                do
+                                {
+                                    origin = Interlocked.Exchange(ref temp_sum, new_);
+                                } while (origin != lst);
+                                //Console.WriteLine( "Thread " + i1 +  " Task "+j+" : New value: " + temp_sum);
+                            }
+                        }
+                        if ((ost > 0 && i1 == (batch_size-1)) || (N == 0))
+                        {
+                                
+                            for (int j = ost; j > 0; j--)
+                            {
+                                T new_ = calculation(temp_sum, collection.ElementAt(collection.Count()-j).First());
+                                var lst = temp_sum;
+                                var origin = (dynamic) 0;
+                                do
+                                {
+                                    origin = Interlocked.Exchange(ref temp_sum, new_);
+                                } while (origin != lst);
+                                //Console.WriteLine( "Thread __ "+ i1 +  " Task "+(collection.Count()-j)+" : New value: " + temp_sum);
+                            }
+                        }
+                        results.Add(temp_sum);
+                        countdown.Signal();
+                    }));
+            foreach (var thread in threads)
+            {
+                thread.Start();
+            }
+            countdown.Wait();
+
+            foreach (var res in results)
+            {
+                result_ = calculation(result_, res);
+            }
+            //Console.WriteLine("Result  : "+ result_);
+            return result_;
+        }
+
+        private static IEnumerable<IEnumerable<T>> WhoFrom(Node<T>? first, Node<T>? second)
+        {
             if (second == null)
             {
-                IEnumerable<IEnumerable<T>> first_data = first.getData();
-                foreach (var el in first_data)
-                {
-                    pool_.Submit(() =>{
-                        var origin = c;
-                        T _new = calculation(c, el.First());
-                        do {
-                            origin = Interlocked.Exchange(ref c, _new);
-                            Console.WriteLine("Last value: " + origin);
-                            Console.WriteLine("New value: " + c);
-                        }
-                        while (!origin.Equals(c)) ;
-                    });
-                }
-                pool_.Join();
+                return first.getData();
             }
             else
             {
-                IEnumerable<IEnumerable<T>> second_data = second.getData();
-                foreach (var el in second_data)
-                {
-                    pool_.Submit(() =>{
-                        var origin = c;
-                        T _new = calculation(c, el.First());
-                        do {
-                            origin = Interlocked.Exchange(ref c, _new);
-                        }
-                        while (!origin.Equals(c)) ;
-                    });
-                }
-                pool_.Join();
+                return second.getData();
             }
-            List<List<T>> data = new List<List<T>>{ new List<T>{c}};
-            return data;
         }
         public static IEnumerable<IEnumerable<T>> product(Node<T>? first, Node<T>? second)
          {
