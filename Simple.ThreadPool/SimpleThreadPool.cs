@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace SimpleThreadPool
@@ -21,9 +19,9 @@ namespace SimpleThreadPool
 
        public void Shutdown()
        {
-           state_ = false; 
-            foreach (var worker in this._workers)
+           foreach (var worker in this._workers)
             {
+                state_ = false; 
                 worker.Join();
             }
             this._workers.Clear();
@@ -34,38 +32,31 @@ namespace SimpleThreadPool
             this._workers = new LinkedList<Thread>();
             for (int i = 0; i < count; ++i)
             {
-                var thread = new Thread(_ =>  WorkerRoutine() );
+                var thread = new Thread( _ =>  WorkerRoutine());
                 _workers.AddLast(thread);
                 thread.Start();
             }
+            
         }
-
         private void WorkerRoutine()
         {
             while (true)
             {
                 Action task;
-                var state = _tasks.TryDequeue(out task);
-                if (state)
+                if ( _tasks.TryDequeue(out task))
                 {
                     task();
                 }
-
                 if (!state_)
                 {
                     break;
                 }
-                else
-                {
-                   
-                }
+                
             }
-
         }
         private LinkedList<Thread> _workers; // queue of worker threads ready to process actions
         private ConcurrentQueue<Action> _tasks = new ConcurrentQueue<Action>(); // actions to be processed by worker threads
         private volatile bool state_ = true;
-
     }
     
     
