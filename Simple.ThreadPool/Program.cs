@@ -9,16 +9,18 @@ namespace SimpleThreadPool
         static void Main()
         {
             SimpleThreadPool pool = new SimpleThreadPool();
-            
+            CountdownEvent cde = new CountdownEvent(4);
             for (int i = 0; i < 100500; ++i)
             {
                 var i1 = i;
                 pool.Submit( () =>
                 {
                     Interlocked.Increment(ref shared_counter);
+                    cde.Signal();
                 });
+                cde.Wait();
             }
-            pool.Join();
+            pool.Shutdown();
             Console.WriteLine(shared_counter);
         }
     }
