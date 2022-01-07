@@ -155,33 +155,33 @@ namespace Library
                     this.data = Execution<T>.mapNative(((x, y) =>  Operation(x,  y, OPERATION.POWER)), this.left, this.right);
                     break;
                 case REDUCE.SUM:
-                    this.data = Execution<T>.reduce((x, y) =>  Operation(x,  y, OPERATION.SUM), this.left, this.right);
-                    //this.data = Execution<T>.reduceNative((x, y) =>  Operation(x,  y, OPERATION.SUM), this.left, this.right);
+                    //this.data = Execution<T>.reduce((x, y) =>  Operation(x,  y, OPERATION.SUM), this.left, this.right);
+                    this.data = Execution<T>.reduceNative((x, y) =>  Operation(x,  y, OPERATION.SUM), this.left, this.right);
                     break;
                 case REDUCE.MIN:
-                    this.data = Execution<T>.reduce((x, y) => Operation(x,  y, OPERATION.LESS), this.left, this.right);
-                    //this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.LESS), this.left, this.right);
+                    //this.data = Execution<T>.reduce((x, y) =>  Operation(x,  y, OPERATION.LESS), this.left, this.right);
+                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.LESS), this.left, this.right);
                     break;
                 case REDUCE.MAX:
-                    this.data = Execution<T>.reduce((x, y) => Operation(x,  y, OPERATION.GREATER), this.left, this.right);
-                    //this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.GREATER), this.left, this.right);
+                    //this.data = Execution<T>.reduce((x, y) =>  Operation(x,  y, OPERATION.GREATER), this.left, this.right);
+                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.GREATER), this.left, this.right);
                     break;
                 case REDUCE.COUNT:
-                    this.data = Execution<T>.reduce((x, y) => Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
-                    //this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
+                    //this.data = Execution<T>.reduce((x, y) =>  Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
+                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
                     break;
                 case ZIP.TWOTOGHETHER:
                     //this.data = Execution<T>.zip(this.left, this.right);
                     this.data = Execution<T>.zipNative(this.left, this.right);
                     break;
                 case PRODUCT.ONCOUNT:
-                    //this.data = Execution<T>.product(this.left, this.right);
-                    this.data = Execution<T>.productNative(this.left, this.right);
+                    this.data = Execution<T>.product(this.left, this.right);
+                    //this.data = Execution<T>.productNative(this.left, this.right);
                     break;
             }
         }
 
-        T Operation (dynamic x, dynamic y, OPERATION operate) 
+        public T Operation (dynamic x, dynamic y, OPERATION operate) 
         {
             switch (operate)
             {
