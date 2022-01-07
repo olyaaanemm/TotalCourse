@@ -17,11 +17,11 @@ namespace SimpleThreadPool
         public void Submit(Action action)
         {
             _tasks.Enqueue(action);
-            cde.Signal();
         }
 
-       public void Join()
-        {
+       public void Shutdown()
+       {
+           state_ = false; 
             foreach (var worker in this._workers)
             {
                 worker.Join();
@@ -38,7 +38,6 @@ namespace SimpleThreadPool
                 _workers.AddLast(thread);
                 thread.Start();
             }
-            cde.Wait();
         }
 
         private void WorkerRoutine()
@@ -46,17 +45,27 @@ namespace SimpleThreadPool
             while (true)
             {
                 Action task;
-                while(_tasks.Count == 0) {
-                
+                var state = _tasks.TryDequeue(out task);
+                if (state)
+                {
+                    task();
                 }
-                _tasks.TryDequeue(out task);
-                task();
+
+                if (!state_)
+                {
+                    break;
+                }
+                else
+                {
+                   
+                }
             }
 
         }
         private LinkedList<Thread> _workers; // queue of worker threads ready to process actions
         private ConcurrentQueue<Action> _tasks = new ConcurrentQueue<Action>(); // actions to be processed by worker threads
-        CountdownEvent cde = new CountdownEvent(4);
+        private volatile bool state_ = true;
+
     }
     
     
