@@ -9,7 +9,7 @@ namespace SimpleThreadPool
         static void Main()
         {
             SimpleThreadPool pool = new SimpleThreadPool();
-            CountdownEvent cde = new CountdownEvent(4);
+            CountdownEvent cde = new CountdownEvent(100500);
             for (int i = 0; i < 100500; ++i)
             {
                 var i1 = i;
