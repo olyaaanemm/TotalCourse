@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using SimpleThreadPool = SimpleThreadPool.SimpleThreadPool;
 
 namespace Library
 {
@@ -85,37 +86,23 @@ namespace Library
              ConcurrentBag<List<T>> data = new ConcurrentBag<List<T>>();
              if (first != null)
              {
-                 var c = new CountdownEvent(first.getData().Count());
-                 IEnumerable<IEnumerable<T>> coll = first.getData();
-                 var threads = coll.Select(
-                     elem => new Thread(
-                         () =>
-                         {
-                             data.Add(new List<T>{calculation(elem.First(), elem.Last())});
-                             c.Signal();
-                         }));
-                 foreach (var thread in threads)
+                 global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
+                 IEnumerable<IEnumerable <T>> first_data = first.getData();
+                 foreach (var el in first_data)
                  {
-                     thread.Start();
+                     pool_.Submit(() =>data.Add(new List<T>{calculation(el.First(), el.Last())})); 
                  }
-                 c.Wait();
+                 pool_.Join();
              }
              else
              {
-                 IEnumerable<IEnumerable<T>> coll = second.getData();
-                 var c = new CountdownEvent(second.getData().Count());
-                 var threads = coll.Select(
-                     elem => new Thread(
-                         () =>
-                         {
-                             data.Add(new List<T>{calculation(elem.First(), elem.Last())});
-                             c.Signal();
-                         }));
-                 foreach (var thread in threads)
+                 global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
+                 IEnumerable<IEnumerable <T>> second_data = second.getData();
+                 foreach (var el in second_data)
                  {
-                     thread.Start();
+                     pool_.Submit(() =>data.Add(new List<T>{calculation(el.First(), el.Last())})); 
                  }
-                 c.Wait();
+                 pool_.Join();
              }
              return data;
          }
@@ -172,36 +159,74 @@ namespace Library
              List<List<T>> data = new List<List<T>>{ new List<T>{c}};
              return data;
          }
-         public static IEnumerable<IEnumerable<T>> product(Node<T>? first, Node<T>? second)
+
+        public static List<List<T>> reduce(Func<T, T, T> calculation, Node<T>? first, Node<T>? second) //left right Х
+        { 
+            var c = (dynamic)0;
+            global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
+            if (second == null && first == null)
+            {
+                return new List<List<T>>{ new List<T>()};
+            }
+            if (second == null)
+            {
+                IEnumerable<IEnumerable<T>> first_data = first.getData();
+                foreach (var el in first_data)
+                {
+                    pool_.Submit(() =>{
+                        var origin = c;
+                        T _new = calculation(c, el.First());
+                        do {
+                            origin = Interlocked.Exchange(ref c, _new);
+                            Console.WriteLine("Last value: " + origin);
+                            Console.WriteLine("New value: " + c);
+                        }
+                        while (!origin.Equals(c)) ;
+                    });
+                }
+                pool_.Join();
+            }
+            else
+            {
+                IEnumerable<IEnumerable<T>> second_data = second.getData();
+                foreach (var el in second_data)
+                {
+                    pool_.Submit(() =>{
+                        var origin = c;
+                        T _new = calculation(c, el.First());
+                        do {
+                            origin = Interlocked.Exchange(ref c, _new);
+                        }
+                        while (!origin.Equals(c)) ;
+                    });
+                }
+                pool_.Join();
+            }
+            List<List<T>> data = new List<List<T>>{ new List<T>{c}};
+            return data;
+        }
+        public static IEnumerable<IEnumerable<T>> product(Node<T>? first, Node<T>? second)
          {
-             ConcurrentBag<List<T>> data = new ConcurrentBag<List<T>>();
-             var second_data = second.getData();
-             var first_data = first.getData();
-             var c = new CountdownEvent(second.getData().Count());
-             var threads = second_data.Select(
-                 el2 => new Thread(
-                     () =>
-                     {
-                         var m = new CountdownEvent(first_data.Count());
-                         var threads = first_data.Select(
-                             el1 => new Thread(
-                                 () =>
-                                {
-                                    data.Add(new List<T>{el2.First(),el1.First()});
-                                    m.Signal();
-                                }));
-                         foreach (var thread in threads)
-                         {
-                             thread.Start();
-                         }
-                         m.Wait();
-                         c.Signal();
-                     }));
-             foreach (var thread in threads)
+             ConcurrentBag<List<T>> data = new ConcurrentBag<List<T>>(); 
+             if ((second == null) && (first == null))
              {
-                 thread.Start();
+                 return data;
              }
-             c.Wait();
+             global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
+             IEnumerable<IEnumerable<T>> second_data = second.getData();
+             IEnumerable<IEnumerable<T>> first_data = first.getData();
+             
+             foreach (var elem  in second_data)
+             {
+                 pool_.Submit(() =>
+                     {
+                         foreach (var el in first_data)
+                         {
+                             data.Add(new List<T> {el.First(), elem.First()});
+                         }
+                     });
+             }
+             pool_.Join();
              return data;
          }
          public static IEnumerable<IEnumerable<T>> productNative(Node<T>? first, Node<T>? second)
@@ -220,7 +245,6 @@ namespace Library
                  {
                      data.Add(new ConcurrentBag<T>{elem.First(), el.First()});
                  }
-                 
              }
              return data;
          }
@@ -230,39 +254,21 @@ namespace Library
              ConcurrentBag<ConcurrentBag<T>> data = new ConcurrentBag<ConcurrentBag<T>>();
              var collection1 = first.getData();
              var collection2 = second.getData();
-             if (collection1.Count() < collection2.Count())
+             global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
+             if (first.getData().Count() < second.getData().Count())
              {
-                 var c = new CountdownEvent(collection1.Count());
-                 var threads = Enumerable.Range(0, collection1.Count()).Select(
-                     i => new Thread(
-                         () =>
-                         {
-                             data.Add(new ConcurrentBag<T> {collection1.ElementAt(i).ElementAt(0), collection2.ElementAt(i).ElementAt(0)});
-                             c.Signal();
-                     }));
-                 foreach (var tread in threads)
+                 for (int i = 0; i < collection1.Count(); i++)
                  {
-                     tread.Start();
+                     pool_.Submit(() => data.Append(new ConcurrentBag<T> {collection1.ElementAt(i).ElementAt(0), collection2.ElementAt(i).ElementAt(0)}));
                  }
-                 c.Wait();
              }
-             else
              {
-                 
-                 var c = new CountdownEvent(collection2.Count());
-                 var threads = Enumerable.Range(0, collection2.Count()).Select(
-                     i => new Thread(
-                         () =>
-                         {
-                             data.Add(new ConcurrentBag<T> {collection1.ElementAt(i).ElementAt(0), collection2.ElementAt(i).ElementAt(0)});
-                             c.Signal();
-                     }));
-                 foreach (var tread in threads)
+                 for (int i = 0; i < collection2.Count(); i++)
                  {
-                     tread.Start();
+                     pool_.Submit(() => data.Append(new ConcurrentBag<T> {collection2.ElementAt(i).ElementAt(0), collection1.ElementAt(i).ElementAt(0)}));
                  }
-                 c.Wait();
              }
+             pool_.Join();
              return data;
          }
          
