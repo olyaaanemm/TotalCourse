@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -142,7 +142,7 @@ namespace Library
         {
             switch (this.taskType)
             {
-                case MAP.MULTIPLY:
+                case MAP.MULTIPLY: 
                     //this.data = Execution<T>.map(((x, y) =>  Operation(x,  y, OPERATION.MULTYPLY)), this.left, this.right);
                     this.data = Execution<T>.mapNative(((x, y) =>  Operation(x,  y, OPERATION.MULTYPLY)), this.left, this.right);
                     break;
@@ -155,20 +155,20 @@ namespace Library
                     this.data = Execution<T>.mapNative(((x, y) =>  Operation(x,  y, OPERATION.POWER)), this.left, this.right);
                     break;
                 case REDUCE.SUM:
-                    //this.data = Execution<T>.reduce(OPERATION.SUM, this.left, this.right);
-                    this.data = Execution<T>.reduceNative((x, y) =>  Operation(x,  y, OPERATION.SUM), this.left, this.right);
+                    this.data = Execution<T>.reduce((x, y) =>  Operation(x,  y, OPERATION.SUM), this.left, this.right);
+                    //this.data = Execution<T>.reduceNative((x, y) =>  Operation(x,  y, OPERATION.SUM), this.left, this.right);
                     break;
                 case REDUCE.MIN:
-                    //this.data = Execution<T>.reduce(OPERATION.LESS, this.left, this.right);
-                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.LESS), this.left, this.right);
+                    this.data = Execution<T>.reduce((x, y) => Operation(x,  y, OPERATION.LESS), this.left, this.right);
+                    //this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.LESS), this.left, this.right);
                     break;
                 case REDUCE.MAX:
-                    //this.data = Execution<T>.reduce(OPERATION.GREATER, this.left, this.right);
-                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.GREATER), this.left, this.right);
+                    this.data = Execution<T>.reduce((x, y) => Operation(x,  y, OPERATION.GREATER), this.left, this.right);
+                    //this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.GREATER), this.left, this.right);
                     break;
                 case REDUCE.COUNT:
-                    //this.data = Execution<T>.reduce(OPERATION.INCREMENT, this.left, this.right);
-                    this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
+                    this.data = Execution<T>.reduce((x, y) => Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
+                    //this.data = Execution<T>.reduceNative((x, y) => Operation(x,  y, OPERATION.INCREMENT), this.left, this.right);
                     break;
                 case ZIP.TWOTOGHETHER:
                     //this.data = Execution<T>.zip(this.left, this.right);
