@@ -5,7 +5,7 @@ namespace SimpleThreadPool
 {
     public static class Program
     {
-        static volatile int   shared_counter = 0;
+        static volatile int shared_counter = 0;
         static void Main()
         {
             SimpleThreadPool pool = new SimpleThreadPool();
@@ -18,9 +18,11 @@ namespace SimpleThreadPool
                     Interlocked.Increment(ref shared_counter);
                     cde.Signal();
                 });
-                cde.Wait();
+                
             }
+            cde.Wait();
             pool.Shutdown();
+            Thread.Sleep(3);
             Console.WriteLine(shared_counter);
         }
     }
