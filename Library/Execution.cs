@@ -88,21 +88,33 @@ namespace Library
              {
                  global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
                  IEnumerable<IEnumerable <T>> first_data = first.getData();
+                 CountdownEvent cde = new CountdownEvent(first_data.Count());
                  foreach (var el in first_data)
                  {
-                     pool_.Submit(() =>data.Add(new List<T>{calculation(el.First(), el.Last())})); 
+                     pool_.Submit(() =>
+                     {
+                         data.Add(new List<T> {calculation(el.First(), el.Last())});
+                         cde.Signal();
+                     }); 
                  }
-                 pool_.Join();
+                 cde.Wait();
+                 pool_.Shutdown();
              }
              else
              {
                  global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
                  IEnumerable<IEnumerable <T>> second_data = second.getData();
+                 CountdownEvent cde = new CountdownEvent(second_data.Count());
                  foreach (var el in second_data)
                  {
-                     pool_.Submit(() =>data.Add(new List<T>{calculation(el.First(), el.Last())})); 
+                     pool_.Submit(() =>
+                     {
+                         data.Add(new List<T> {calculation(el.First(), el.Last())});
+                         cde.Signal();
+                     }); 
                  }
-                 pool_.Join();
+                 cde.Wait();
+                 pool_.Shutdown();
              }
              return data;
          }
@@ -253,6 +265,7 @@ namespace Library
              global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
              IEnumerable<IEnumerable<T>> second_data = second.getData();
              IEnumerable<IEnumerable<T>> first_data = first.getData();
+             CountdownEvent cde = new CountdownEvent(second_data.Count());
              
              foreach (var elem  in second_data)
              {
@@ -262,9 +275,11 @@ namespace Library
                          {
                              data.Add(new List<T> {el.First(), elem.First()});
                          }
+                         cde.Signal();
                      });
              }
-             pool_.Join();
+             cde.Wait();
+             pool_.Shutdown();
              return data;
          }
          public static IEnumerable<IEnumerable<T>> productNative(Node<T>? first, Node<T>? second)
@@ -293,20 +308,37 @@ namespace Library
              var collection1 = first.getData();
              var collection2 = second.getData();
              global::SimpleThreadPool.SimpleThreadPool pool_ = new global::SimpleThreadPool.SimpleThreadPool();
+             
              if (first.getData().Count() < second.getData().Count())
              {
+                 CountdownEvent cde = new CountdownEvent(collection1.Count());
                  for (int i = 0; i < collection1.Count(); i++)
                  {
-                     pool_.Submit(() => data.Append(new ConcurrentBag<T> {collection1.ElementAt(i).ElementAt(0), collection2.ElementAt(i).ElementAt(0)}));
+                     pool_.Submit(() =>
+                     {
+                         
+                         data.Append(new ConcurrentBag<T>
+                                 {collection1.ElementAt(i).ElementAt(0), collection2.ElementAt(i).ElementAt(0)});
+                         cde.Signal();
+
+                     });
                  }
+                 cde.Wait();
              }
-             {
+             else {
+                 CountdownEvent cde = new CountdownEvent(collection2.Count());
                  for (int i = 0; i < collection2.Count(); i++)
                  {
-                     pool_.Submit(() => data.Append(new ConcurrentBag<T> {collection2.ElementAt(i).ElementAt(0), collection1.ElementAt(i).ElementAt(0)}));
+                     pool_.Submit(() =>
+                     {
+                         data.Append(new ConcurrentBag<T>
+                             {collection2.ElementAt(i).ElementAt(0), collection1.ElementAt(i).ElementAt(0)});
+                         cde.Signal();
+                     });
                  }
+                 cde.Wait();
              }
-             pool_.Join();
+             pool_.Shutdown();
              return data;
          }
          
